@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   get_next_line.c                                    :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: mimarque <mimarque@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2021/12/14 15:07:04 by mimarque          #+#    #+#             */
+/*   Updated: 2021/12/14 15:31:34 by mimarque         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "get_next_line.h"
 
 void	*ft_memcpy(void *dst, const void *src, size_t n)
@@ -48,12 +60,13 @@ char	*output(char **backup, char *hBackup, int ret, int fd)
 char	*get_next_line(int fd)
 {
 	int			ret;
-	char 		buf[BUFFER_SIZE + 1];
+	char		buf[BUFFER_SIZE + 1];
 	static char	*backup[NUM_OF_FD];
-	char 		*hBackup;
+	char		*hbackup;
 
 	if (fd < 0)
 		return (NULL);
+	ret = 0;
 	while ((ret = read(fd, buf, BUFFER_SIZE)) > 0)
 	{
 		buf[BUFFER_SIZE] = '\0';
@@ -64,13 +77,13 @@ char	*get_next_line(int fd)
 		}
 		else
 		{
-			hBackup = ft_strjoin(backup[fd],buf);
+			hbackup = ft_strjoin(backup[fd], buf);
 			free(backup[fd]);
-			backup[fd] = hBackup;
+			backup[fd] = hbackup;
 			ft_memset(buf, 0, BUFFER_SIZE);
 		}
-		if (ft_strchr(backup[fd],'\n'))
-			break;
+		if (ft_strchr(backup[fd], '\n'))
+			break ;
 	}
-	return (output(backup, hBackup, ret, fd));
+	return (output(backup, hbackup, ret, fd));
 }
