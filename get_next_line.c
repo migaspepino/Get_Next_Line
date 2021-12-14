@@ -6,7 +6,7 @@
 /*   By: mimarque <mimarque@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/14 15:07:04 by mimarque          #+#    #+#             */
-/*   Updated: 2021/12/14 15:31:34 by mimarque         ###   ########.fr       */
+/*   Updated: 2021/12/14 21:22:19 by mimarque         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,26 +64,23 @@ char	*get_next_line(int fd)
 	static char	*backup[NUM_OF_FD];
 	char		*hbackup;
 
-	if (fd < 0)
+	if (fd < 0 || fd > NUM_OF_FD)
 		return (NULL);
-	ret = 0;
-	while ((ret = read(fd, buf, BUFFER_SIZE)) > 0)
+	ret = 1;
+	while (ft_strchr(backup[fd], '\n') != NULL || ret != 0)
 	{
-		buf[BUFFER_SIZE] = '\0';
+		ret = read(fd, buf, BUFFER_SIZE);
+		buf[ret] = '\0';
+		if (ret == 0)
+			break ;
 		if (backup[fd] == NULL)
-		{
 			backup[fd] = ft_strdup(buf);
-			ft_memset(buf, 0, BUFFER_SIZE);
-		}
 		else
 		{
 			hbackup = ft_strjoin(backup[fd], buf);
 			free(backup[fd]);
 			backup[fd] = hbackup;
-			ft_memset(buf, 0, BUFFER_SIZE);
 		}
-		if (ft_strchr(backup[fd], '\n'))
-			break ;
 	}
 	return (output(backup, hbackup, ret, fd));
 }
