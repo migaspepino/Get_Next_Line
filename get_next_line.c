@@ -6,7 +6,7 @@
 /*   By: mimarque <mimarque@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/14 15:07:04 by mimarque          #+#    #+#             */
-/*   Updated: 2021/12/14 21:22:19 by mimarque         ###   ########.fr       */
+/*   Updated: 2021/12/15 01:06:30 by mimarque         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ size_t	ft_strlen(const char *s)
 	return (i);
 }
 
-char	*output(char **backup, char *hBackup, int ret, int fd)
+char	*output(char **backup, char *rbackup, int ret, int fd)
 {
 	int		value;
 	char	*temp;
@@ -45,7 +45,7 @@ char	*output(char **backup, char *hBackup, int ret, int fd)
 	else if (ret == 0 && backup[fd] == NULL)
 		return (NULL);
 	value = (int)(ft_strchr(backup[fd], '\n') - backup[fd] + 1);
-	hBackup = ft_substr(backup[fd], 0, value);
+	rbackup = ft_substr(backup[fd], 0, value);
 	temp = ft_substr(backup[fd], value, BUFFER_SIZE * BUFFER_SIZE);
 	free(backup[fd]);
 	if (temp[0] == '\0')
@@ -54,7 +54,7 @@ char	*output(char **backup, char *hBackup, int ret, int fd)
 		temp = NULL;
 	}
 	backup[fd] = temp;
-	return (hBackup);
+	return (rbackup);
 }
 
 char	*get_next_line(int fd)
@@ -62,25 +62,24 @@ char	*get_next_line(int fd)
 	int			ret;
 	char		buf[BUFFER_SIZE + 1];
 	static char	*backup[NUM_OF_FD];
-	char		*hbackup;
+	char		*rbackup;
 
 	if (fd < 0 || fd > NUM_OF_FD)
 		return (NULL);
-	ret = 1;
-	while (ft_strchr(backup[fd], '\n') != NULL || ret != 0)
+	while (ft_strchr(backup[fd], '\n') == NULL)
 	{
 		ret = read(fd, buf, BUFFER_SIZE);
 		buf[ret] = '\0';
-		if (ret == 0)
+		if (ret <= 0)
 			break ;
 		if (backup[fd] == NULL)
 			backup[fd] = ft_strdup(buf);
 		else
 		{
-			hbackup = ft_strjoin(backup[fd], buf);
+			rbackup = ft_strjoin(backup[fd], buf);
 			free(backup[fd]);
-			backup[fd] = hbackup;
+			backup[fd] = rbackup;
 		}
 	}
-	return (output(backup, hbackup, ret, fd));
+	return (output(backup, rbackup, ret, fd));
 }
