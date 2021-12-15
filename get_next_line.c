@@ -48,29 +48,27 @@ char	*output(char **backup, char *hBackup, int ret, int fd)
 char	*get_next_line(int fd)
 {
 	int			ret;
-	char 		buf[BUFFER_SIZE + 1];
+	char		buf[BUFFER_SIZE + 1];
 	static char	*backup[NUM_OF_FD];
-	char 		*hBackup;
+	char		*hbackup;
 
-	if (fd < 0)
+	if (fd < 0 || fd > NUM_OF_FD)
 		return (NULL);
-	while ((ret = read(fd, buf, BUFFER_SIZE)) > 0)
+	ret = 1;
+	while (ft_strchr(backup[fd], '\n') != NULL || ret != 0)
 	{
-		buf[BUFFER_SIZE] = '\0';
+		ret = read(fd, buf, BUFFER_SIZE);
+		buf[ret] = '\0';
+		if (ret == 0)
+			break ;
 		if (backup[fd] == NULL)
-		{
 			backup[fd] = ft_strdup(buf);
-			ft_memset(buf, 0, BUFFER_SIZE);
-		}
 		else
 		{
-			hBackup = ft_strjoin(backup[fd],buf);
+			hbackup = ft_strjoin(backup[fd], buf);
 			free(backup[fd]);
-			backup[fd] = hBackup;
-			ft_memset(buf, 0, BUFFER_SIZE);
+			backup[fd] = hbackup;
 		}
-		if (ft_strchr(backup[fd],'\n'))
-			break;
 	}
-	return (output(backup, hBackup, ret, fd));
+	return (output(backup, hbackup, ret, fd));
 }
