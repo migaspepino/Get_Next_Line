@@ -6,7 +6,7 @@
 /*   By: mimarque <mimarque@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/14 15:07:00 by mimarque          #+#    #+#             */
-/*   Updated: 2021/12/14 15:10:38 by mimarque         ###   ########.fr       */
+/*   Updated: 2021/12/15 00:24:57 by mimarque         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,8 @@ char	*ft_strchr(const char *s, int c)
 	char	chr;
 
 	chr = (char)c;
+	if (s == NULL)
+		return (NULL);
 	while (*s && *s != chr)
 		s++;
 	if (*s == chr)

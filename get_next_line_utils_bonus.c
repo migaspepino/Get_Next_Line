@@ -5,6 +5,8 @@ char	*ft_strchr(const char *s, int c)
 	char	chr;
 
 	chr = (char)c;
+	if (s == NULL)
+		return (NULL);
 	while (*s && *s != chr)
 		s++;
 	if (*s == chr)
