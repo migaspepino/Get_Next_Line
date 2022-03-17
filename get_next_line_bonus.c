@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_next_line.c                                    :+:      :+:    :+:   */
+/*   get_next_line_bonus.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mimarque <mimarque@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/14 15:07:04 by mimarque          #+#    #+#             */
-/*   Updated: 2022/02/22 14:37:22 by mimarque         ###   ########.fr       */
+/*   Updated: 2022/03/17 17:28:22 by mimarque         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 #include <unistd.h>
 #include <stdio.h>
 
-#include "get_next_line.h"
+#include "get_next_line_bonus.h"
 
 char	*cycle(char **backup, int fd, char *buf)
 {
