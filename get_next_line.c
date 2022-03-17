@@ -6,7 +6,7 @@
 /*   By: mimarque <mimarque@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/14 15:07:04 by mimarque          #+#    #+#             */
-/*   Updated: 2022/02/17 03:07:26 by mimarque         ###   ########.fr       */
+/*   Updated: 2022/02/22 14:37:22 by mimarque         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ char	*returner(char **backup, int fd)
 	char	*line;
 	char	*temp;
 
-	index = ft_strchr(backup[fd], '\n') - backup[fd];
+	index = ft_strchr(backup[fd], '\n') - backup[fd] + 1;
 	line = ft_strldup(backup[fd], 0, index);
 	temp = ft_strldup(backup[fd], index, ft_strlen(backup[fd]));
 	free(backup[fd]);
