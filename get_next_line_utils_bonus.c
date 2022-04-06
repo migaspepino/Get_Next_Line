@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_next_line_utils_bonus.c                        :+:      :+:    :+:   */
+/*   get_next_line_utils.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mimarque <mimarque@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/14 15:07:00 by mimarque          #+#    #+#             */
-/*   Updated: 2022/03/17 17:27:55 by mimarque         ###   ########.fr       */
+/*   Updated: 2022/04/05 23:41:35 by mimarque         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "get_next_line_bonus.h"
+#include "get_next_line.h"
 
 /*
     Locates the first occurrence of 'c' in the string pointed to by 's'.
@@ -57,7 +57,7 @@ char	*ft_strldup(char *s1, int start, int end)
 	result of the concatenation of s1 and s2
 	S1 is freed
 */
-char	*ft_strjoin(char *s1, char *s2)
+char	*ft_strjoinfree(char *s1, char *s2)
 {
 	int		i;
 	char	*str;

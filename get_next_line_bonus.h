@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_next_line_bonus.h                              :+:      :+:    :+:   */
+/*   get_next_line.h                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mimarque <mimarque@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/14 15:07:15 by mimarque          #+#    #+#             */
-/*   Updated: 2022/03/17 17:27:24 by mimarque         ###   ########.fr       */
+/*   Updated: 2022/04/05 23:41:40 by mimarque         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef GET_NEXT_LINE_BONUS_H
+#ifndef GET_NEXT_LINE_H
 # ifndef BUFFER_SIZE
 #  define BUFFER_SIZE 42
 # endif
@@ -22,7 +22,7 @@
 
 char	*ft_strchr(const char *s, int c);
 char	*ft_strldup(char *s1, int start, int end);
-char	*ft_strjoin(char *s1, char *s2);
+char	*ft_strjoinfree(char *s1, char *s2);
 size_t	ft_strlen(const char *s);
 char	*cycle(char **backup, int fd, char *buf);
 char	*returner(char **backup, int fd);
