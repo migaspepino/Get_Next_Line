@@ -6,7 +6,7 @@
 /*   By: mimarque <mimarque@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/14 15:07:04 by mimarque          #+#    #+#             */
-/*   Updated: 2022/04/06 14:21:19 by mimarque         ###   ########.fr       */
+/*   Updated: 2022/07/06 01:46:50 by mimarque         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -104,5 +104,6 @@ char	*get_next_line(int fd)
 	}
 	free(line);
 	free(backup[fd]);
+	backup[fd] = NULL;
 	return (NULL);
 }
