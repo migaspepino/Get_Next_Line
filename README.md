@@ -14,4 +14,4 @@ Version: 10
  * The returned line includes the terminating `\n` character, except if the end of file was reached and does not end with a `\n` character.
 
 ## 3. Flowchart
-![flowchart](https://raw.githubusercontent.com/mimarque/Get_Next_Line/main/GNL_flowchart.png)
+![flowchart](https://imgur.com/MpRprTC.png)
